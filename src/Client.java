@@ -30,19 +30,18 @@ public class Client {
 
     public void start(){
         System.out.println("发起连接");
-        System.out.println("服务器IP地址：" + clientsocket.getLocalAddress() + " Port:" + clientsocket.getLocalPort());
-        System.out.println("客户端IP地址：" + clientsocket.getInetAddress() + " Port:" + clientsocket.getPort());
+        System.out.println("服务器IP地址：" + clientsocket.getLocalAddress() + " 端口:" + clientsocket.getLocalPort());
+        System.out.println("客户端IP地址：" + clientsocket.getInetAddress() + " 端口:" + clientsocket.getPort());
     }
 
     //发送数据
     public void send() throws Exception{
+        System.out.println("请输入信息：");
         Scanner input = new Scanner(System.in);  //Scanner读入键盘输入
-
         OutputStream outputStream = clientsocket.getOutputStream();
-        PrintStream socketPrintStream = new PrintStream(outputStream);//获取client输出流
-
+        PrintStream inputStream = new PrintStream(outputStream);//获取client输出流
         String message = input.next();
-        socketPrintStream.println(message);
+        inputStream.println(message);
     }
 
     //读取数据
@@ -52,6 +51,7 @@ public class Client {
         return socketBuffer.readLine(); //读入缓冲数据
     }
 
+    //处理数据
     public void process() throws Exception{
         while (true){
             send();
@@ -65,6 +65,7 @@ public class Client {
         }
     }
 
+    //关闭链接
     public void close() throws Exception{
         clientsocket.close();
     }
