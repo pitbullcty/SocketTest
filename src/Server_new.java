@@ -16,9 +16,6 @@ public class Server_new {
                 System.out.println(message);
                 PrintStream outputStream = new PrintStream(clientsocket.getOutputStream());
                 outputStream.println("服务器回显："+message);
-//                outputStream.close();
-//                Inputstream.close();
-//                clientsocket.close();
             }
         } catch (Exception e) {
             System.out.println(e);

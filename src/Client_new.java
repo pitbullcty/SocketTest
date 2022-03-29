@@ -12,6 +12,7 @@ public class Client_new {
         Socket clientsocket = new Socket();
         try {
             clientsocket.connect(new InetSocketAddress(Inet4Address.getLocalHost(), 12000));
+            System.out.println("已连接至服务器");
             while (true){
                 System.out.println("请输入信息：");
                 Scanner input = new Scanner(System.in);  //Scanner读入键盘输入
@@ -21,7 +22,6 @@ public class Client_new {
                 InputStream outputStream = clientsocket.getInputStream();//获取client输入流
                 BufferedReader socketBuffer = new BufferedReader(new InputStreamReader(outputStream, "UTF-8"));
                 System.out.println(socketBuffer.readLine());
-                clientsocket.close();
             }
         } catch (Exception e) {
             try {

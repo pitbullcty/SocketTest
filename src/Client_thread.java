@@ -2,7 +2,6 @@ import java.io.*;
 import java.net.Inet4Address;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client_thread {
     public static void main(String[] args) throws InterruptedException {
@@ -11,6 +10,7 @@ public class Client_thread {
             new Thread(new clientthread(i)).start();
         }
     }
+
     static class clientthread implements Runnable {
         private String name;
 
@@ -27,15 +27,15 @@ public class Client_thread {
             try {
                 clientsocket.connect(new InetSocketAddress(Inet4Address.getLocalHost(), 13000));
                 PrintStream inputStream = new PrintStream(clientsocket.getOutputStream());//获取client输出流
-                System.out.println("client"+name+"链接");
-                String message = "这是client"+name;
+                System.out.println("client" + name + "链接");
+                String message = "这是client" + name;
                 inputStream.println(message);
                 InputStream outputStream = clientsocket.getInputStream();//获取client输入流
                 BufferedReader socketBuffer = new BufferedReader(new InputStreamReader(outputStream, "UTF-8"));
                 System.out.println(socketBuffer.readLine());
 
             } catch (Exception e) {
-                System.out.println("client"+name+"连接失败！");
+                System.out.println("client" + name + "连接失败！");
                 e.printStackTrace();
             }
 
